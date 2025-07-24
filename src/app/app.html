@@ -1,0 +1,85 @@
+<!-- Main game content -->
+<div id="mainCtrl">
+  <!-- Header -->
+  <div class="header">
+    <div class="navbar" role="navigation">
+      <div class="container points">
+        Familiada
+      </div>
+    </div>       
+  </div>
+  
+  <!-- Main game area -->
+  <div class="container">
+    <div class="row">
+      <!-- Family 1 wrong answers -->
+      <div class="col-md-1">
+        <span *ngFor="let i of getFamily1WrongPoints(); trackBy: trackByIndex">
+          <span class="wrong-answer">X</span>
+          <br>
+        </span>
+      </div>
+      
+      <!-- Questions area -->
+      <div class="col-md-10">
+        <div class="questions-wrapper">
+          <div class="questions row">
+            <div class="question row" *ngFor="let question of questions; let i = index; trackBy: trackByIndex">
+              <div class="number col-md-1">{{i + 1}}</div>
+              <div class="question-content col-md-10">{{getAnswerText(question)}}</div>
+              <div class="question-score col-md-1">{{getAnswerScore(question)}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Family 2 wrong answers -->
+      <div class="col-md-1">
+        <span *ngFor="let i of getFamily2WrongPoints(); trackBy: trackByIndex">
+          <span class="wrong-answer">X</span>
+          <br>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with scores -->
+  <div class="footer">
+    <div class="container">
+      <div class="col-md-6">
+        <span class="pull-right points">{{participants.family1.score}}</span>
+        <span class="pull-left">
+          <span *ngIf="familyInCharge === participants.family1">*</span>
+          {{participants.family1.name}}
+        </span> 
+      </div>
+      <div class="col-md-6">
+        <span class="pull-left points">{{participants.family2.score}}</span>
+        <span class="pull-right">
+          <span *ngIf="familyInCharge === participants.family2">*</span>
+          {{participants.family2.name}}
+        </span> 
+      </div>
+    </div>
+  </div>
+  
+  <!-- Help section -->
+  <div>
+    <span id="help" (click)="showHelp()">HELP</span>
+    <div id="help-block" *ngIf="showDivHelp">
+      <h2>Obsługa</h2>
+      <ul>
+        <li>
+          <button type="button" class="btn btn-info btn-sm" (click)="playIntro()">
+            Odtwarzaj/Zatrzymaj intro
+          </button>
+        </li>
+        <li>Zmiana rodziny na Zbieciow: <b>Z</b></li>
+        <li>Zmiana rodziny na Cieslakow: <b>C</b></li>
+        <li>Nastepna runda: <b>Spacja</b></li>
+        <li>Zla odpowiedz: <b>W</b></li>
+        <li>Dobra odpowiedz: <b>1-5</b></li>
+      </ul>  
+    </div>
+  </div>
+</div>

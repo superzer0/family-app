@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="">
+  <!-- endbuild -->
+</head>
+<body ng-app="familiadaApp">
+    <!--[if lte ie 8]>
+      <p class="browsehappy">you are using an <strong>outdated</strong> browser. please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+      <div ng-controller="mainCtrl" id="mainCtrl">
+        <!-- add your site or application content here -->
+        <div class="header">
+          <div class="navbar" role="navigation">
+            <div class="container points">
+              Familiada
+            </div>
+          </div>       
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-1">
+
+              <span ng-repeat="i in getFamily1WrongPoints() track by $index">
+                <span class="wrong-answer">
+                  X
+                </span>
+                <br>
+              </span>
+              
+            </div>
+            <div class="col-md-10">
+
+              <div class=" questions-wrapper">
+                <div class="questions row">
+
+                 <div class="question row" ng-repeat="(key, value) in questions">
+                   <div class="number col-md-1">{{$index + 1}}</div>
+                   <div class="question-content col-md-10">{{getAnswerText(value)}}</div>
+                   <div class="question-score col-md-1" >{{getAnswerScore(value)}}</div>
+                 </div>
+
+               </div>
+             </div>
+           </div>
+           <div class="col-md-1">
+             <span ng-repeat="i in getFamily2WrongPoints() track by $index">
+                <span class="wrong-answer">
+                  X
+                </span>
+                <br>
+              </span>
+           </div>
+         </div>
+       </div>
+
+       <div class="footer">
+        <div class="container">
+          <div class="col-md-6">
+            <span class="pull-right points">{{participants.family1.score}}</span>
+            <span class="pull-left">
+              <span ng-if="familyInCharge == participants.family1">*</span>
+              {{participants.family1.name}}</span> 
+            </div>
+            <div class="col-md-6">
+              <span class="pull-left points">{{participants.family2.score}}</span>
+              <span class="pull-right">
+                <span ng-if="familyInCharge == participants.family2">*</span>
+                {{participants.family2.name}}</span> 
+              </div>
+            </div>
+          </div>
+        <div>
+        <span id="help" ng-click="showHelp()">HELP</span>
+        <div id="help-block" ng-show="showDivHelp">
+              <h2>Obsługa</h2>
+              <p>
+                <ul>
+                  <li><button type="button" class="btn btn-info btn-sm" ng-click="playIntro()">
+              Odtwarzaj/Zatrzymaj intro
+          </button></li>
+                  <li>Zmiana rodziny na Zbieciow: <b>Z</b></li>
+                  <li>Zmiana rodziny na Cieslakow: <b>C</b></li>
+                  <li>Nastepna runda: <b>Spacja</b></li>
+                  <li>Zla odpowiedz: <b>W</b></li>
+                  <li>Dobra odpowiedz: <b>1-5</b></li>
+                </ul>
+              </p>  
+          </div>
+        </div>
+
+          <!-- <button type="button" class="btn btn-info" ng-click="swithToFamily1()">switch to 1</button> -->
+          <!-- build:js(.) scripts/vendor.js -->
+          <!-- bower:js -->
+          <script src="bower_components/jquery/dist/jquery.js"></script>
+          <script src="bower_components/angular/angular.js"></script>
+          <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+          <script src="bower_components/angular-audio/app/angular.audio.js"></script>
+          <!-- endbower -->
+          <!-- endbuild -->
+
+          <!-- build:js({.tmp,app}) scripts/scripts.js -->
+          <script src="scripts/app.js"></script>
+          <script src="scripts/controllers/main.js"></script>
+          <!-- endbuild -->
+        </body>
+        </html>
