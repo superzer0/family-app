@@ -65,7 +65,16 @@
   
   <!-- Help section -->
   <div>
-    <span id="help" (click)="showHelp()">HELP</span>
+    <button 
+      id="help" 
+      (click)="showHelp()" 
+      (keydown.enter)="showHelp()" 
+      (keydown.space)="showHelp()"
+      tabindex="0"
+      type="button"
+      aria-label="Toggle help instructions">
+      HELP
+    </button>
     <div id="help-block" *ngIf="showDivHelp">
       <h2>Obsługa</h2>
       <ul>

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SoundService } from './services/sound.service';
 import { PARTICIPANTS, QUESTIONS, Question, Answer, Family } from './config/game.config';
@@ -23,7 +23,9 @@ export class App implements OnInit {
   showSummary = false;
   victoryFamily: Family | undefined = undefined;
 
-  constructor(private soundService: SoundService) {
+  private soundService = inject(SoundService);
+
+  constructor() {
     this.participants = {
       family1: {
         name: PARTICIPANTS.family1.name,
@@ -118,11 +120,11 @@ export class App implements OnInit {
     return '.................................';
   }
 
-  getFamily1WrongPoints(): any[] {
+  getFamily1WrongPoints(): unknown[] {
     return new Array(this.participants.family1.wrongAnswers || 0);
   }
 
-  getFamily2WrongPoints(): any[] {
+  getFamily2WrongPoints(): unknown[] {
     return new Array(this.participants.family2.wrongAnswers || 0);
   }
 
@@ -176,7 +178,7 @@ export class App implements OnInit {
     this.soundService.playIntroSound();
   }
 
-  trackByIndex(index: number, item: any): number {
+  trackByIndex(index: number): number {
     return index;
   }
 

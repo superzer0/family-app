@@ -88,4 +88,14 @@ span.wrong-answer{
 }
 #help{
   font-size: 10px;
+  background: transparent;
+  border: none;
+  color: yellow;
+  cursor: pointer;
+  font-family: "console-like-font", Consolas, Arial;
+}
+
+#help:hover, #help:focus {
+  outline: 1px solid yellow;
+  background: rgba(255, 255, 0, 0.1);
 }
