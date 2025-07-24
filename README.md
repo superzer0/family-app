@@ -63,6 +63,30 @@ The build artifacts will be stored in the `dist/` directory.
 npm test
 ```
 
+### Linting
+
+```bash
+npm run lint
+```
+
+## CI/CD
+
+This project includes GitHub Actions workflows for automated testing and deployment:
+
+### PR Validation
+- Automatically runs on pull requests
+- Tests on Node.js 18.x and 20.x
+- Runs linting, builds, and tests
+- Validates code quality before merging
+
+### Build Artifacts
+- Runs on pushes to main branch and releases
+- Creates production builds
+- Uploads downloadable artifacts
+- Automatically attaches builds to GitHub releases
+
+The workflows ensure code quality and provide ready-to-deploy builds for each release.
+
 ## Keyboard Controls
 
 - **Z**: Switch control to Zbieciowie family
